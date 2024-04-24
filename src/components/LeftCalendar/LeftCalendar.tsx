@@ -11,7 +11,7 @@ import { monthOfYear } from "../../utils/variables";
 const LeftCalendar = () => {
   const [currMonth, setCurrMonth] = React.useState(getMonth());
   const [currMonthName, setCurrMonthName] = React.useState("");
-  const [currYearName, setCurrYearName] = React.useState(0);
+  const [currYearNumber, setCurrYearNumber] = React.useState<number | null>();
   //Get current month name
   React.useEffect(() => {
     const currDate = new Date();
@@ -21,11 +21,11 @@ const LeftCalendar = () => {
     const currYear: number = currDate.getFullYear();
     console.log("🚀 ~ getMonthAndYear ~ currYear:", currYear);
     setCurrMonthName(currMonth);
-    setCurrYearName(currYear);
+    setCurrYearNumber(currYear);
   }, [currMonth]);
   return (
     <React.Fragment>
-      <HeaderLeftCalendar month={currMonthName} year={currYearName} />
+      <HeaderLeftCalendar month={currMonthName} year={currYearNumber} />
       <div className="col-span-12 ">
         <Month month={currMonth} />
       </div>
