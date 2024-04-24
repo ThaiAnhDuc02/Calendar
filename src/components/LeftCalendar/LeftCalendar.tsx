@@ -7,6 +7,7 @@ import Month from "../TimeFormat/Month";
 //from utils
 import getMonth from "../../utils/getMonth";
 import { monthOfYear } from "../../utils/variables";
+import CalendarBoard from "./CalendarBoard";
 
 const LeftCalendar = () => {
   const [currMonth, setCurrMonth] = React.useState(getMonth());
@@ -25,9 +26,14 @@ const LeftCalendar = () => {
   }, [currMonth]);
   return (
     <React.Fragment>
-      <HeaderLeftCalendar month={currMonthName} year={currYearNumber} />
-      <div className="col-span-12 ">
-        <Month month={currMonth} />
+      <div className="lg:px-6 border-b">
+        <HeaderLeftCalendar month={currMonthName} year={currYearNumber} />
+        <div className="col-span-12 ">
+          <Month month={currMonth} />
+        </div>
+      </div>
+      <div className="bottom-left-calendar py-3 border-t ">
+        <CalendarBoard></CalendarBoard>
       </div>
     </React.Fragment>
   );
