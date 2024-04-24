@@ -8,7 +8,7 @@ interface MonthProps {
 }
 
 const Month: React.FC<MonthProps> = ({ month }) => {
-  const [currMonth, setCurrMonth] = React.useState(0);
+  const [currMonth, setCurrMonth] = React.useState<number>();
   const [isWithinMonth, setIsWithinMonth] = React.useState<boolean[]>([]);
 
   React.useEffect(() => {
@@ -17,10 +17,12 @@ const Month: React.FC<MonthProps> = ({ month }) => {
     setCurrMonth(currentIndexMonth);
     //get Array include  whether the date is within this month or not
     const monthStatus = month.map((row: any) => {
+      // return true if day are in current  month , else false
       return row.map((day: any) => day.month() === currentIndexMonth);
     });
-    //console.log(monthStatus);
+    console.log(monthStatus);
     setIsWithinMonth(monthStatus.flat());
+    console.log(isWithinMonth);
   }, [month]);
 
   return (
@@ -39,7 +41,7 @@ const Month: React.FC<MonthProps> = ({ month }) => {
         {month.flat().map((day: any, idx: number) => (
           <button
             key={idx}
-            className=" rounded-full  hover:bg-primary active:bg-primary focus:outline-none focus:ring focus:bg-primary "
+            className=" rounded-full  hover:bg-primary active:bg-primary focus:outline-none focus:ring focus:bg-secondary  focus:text-white"
           >
             <Day day={day} isWithinMonth={isWithinMonth[idx]} />
           </button>
